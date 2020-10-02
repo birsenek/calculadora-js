@@ -18,22 +18,26 @@ let display = document.querySelector('.display-area')
 let newDisplay = false
 let storeOnN2 = false
 
-//pegar os valores dos botoes
+//operar a calculadora
 buttonsArea.addEventListener('click', e => {
     clearInitialDisplay(e)
-    storeValues(e)
+    clickValues(e)
+    getOperator(e)
+    showResult(e)
+    clearScreen(e)
+    undoLastDigit(e)
 })
 
 //limpar o 0 inicial do display quando entrar com um número
 const clearInitialDisplay = e => {
-    if (!newDisplay && !isNaN(e.target.value)) {
+    if (!newDisplay && !isNaN(e.target.value) || !isNaN(e.key)) {
         display.innerHTML = ""
         newDisplay = true
     } 
 }
 
 //concatenar os valores digitados no display e armazenar nas variáveis n1 e n2
-const storeValues = (e) => {
+const clickValues = e => {
     if (storeOnN2 == false && (!isNaN(e.target.value) || e.target.value == ".")) {
         //filtrar mais de um . nos numeros
 
@@ -42,9 +46,8 @@ const storeValues = (e) => {
         }
 
         displayValue = e.target.value
-        display.innerHTML += displayValue
-        n1 = parseFloat(display.textContent, 10)
-        console.log("n1 " + n1)
+        display.innerHTML += displayValue 
+        return n1 = parseFloat(display.textContent, 10)
     } else if (storeOnN2 == true && (!isNaN(e.target.value) || e.target.value == ".")) {
     //limpar o display após mudar a variável
         if(display.textContent != "" && !n2) {
@@ -54,10 +57,13 @@ const storeValues = (e) => {
             return
         }
         display.innerHTML += e.target.value
-        n2 = parseFloat(display.textContent, 10)
-        console.log("n2 " + n2)
-    //aplicar operador na primeira iteração
-    } else if (e.target.id == 'operator') {
+        return n2 = parseFloat(display.textContent, 10)
+    }
+}
+
+//aplicar o operador
+const getOperator = e => {
+    if (e.target.id == 'operator') {
         if(!n2) {
             storeOnN2 = true
             operator = e.target.value
@@ -66,8 +72,12 @@ const storeValues = (e) => {
             newDisplay = false
             operator = e.target.value
         }
-    //exibir o resultado
-    } else if (e.target.value === 'result' || e.target.id=='vert') {
+    }
+}
+
+//exibir o resultado
+const showResult = e => {
+    if (e.target.value === 'result' || e.target.id=='vert') {
         if (n1 === undefined || n2 === undefined ) {
             return 
         } else if ( n2 == 0 && operator == "/") {
@@ -79,15 +89,22 @@ const storeValues = (e) => {
         console.log("res " + result)
     //armazenar o resultado para futuras operações
         n1 = result
-    } else if (e.target.value === 'clear') {
+    }
+}
+
+//limpar tela
+const clearScreen = e => {
+    if (e.target.value === 'clear') {
         display.innerHTML = "0.0"
         n1 = 0
         n2 = 0
         newDisplay = false
         storeOnN2 = false
     }
-
-    //desfazer ultimo digito
+}
+    
+//desfazer ultimo digito
+const undoLastDigit = e => {
     if (e.target.value == "undo") {
         const undo = display.textContent.split('').slice(0,-1).join('')
         display.innerHTML = undo
