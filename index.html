@@ -8,12 +8,13 @@
 </head>
 <body>
     <div class="content">
+        <h1>Pode usar calculadora?</h1>
         <div class="calculator-area">
-            <div class="display-area">0.00</div>
+            <div class="display-area"><span id='display-text'>0</span></div>
             <div class="buttons-area">
                 <button value="clear" id="clear">Limpar</button>
                 <button value='/' id="operator">/</button>
-                <button value='*' id="operator">*</button>
+                <button value='*' id="operator" class="mult">*</button>
                 <button value=7 id="number">7</button>
                 <button value=8 id="number">8</button>
                 <button value=9 id="number">9</button>
@@ -26,7 +27,7 @@
                 <button value=2 id="number">2</button>
                 <button value=3 id="number">3</button>
                 <button value="result" id="result"><span id="vert">Resultado</span></button>
-                <button value=0 id="number">0</button>
+                <button value=0 id="number" class="zero">0</button>
                 <button value="." id="dot">.</button>
                 <button value="undo" id="undo">Desfazer</button>
             </div>

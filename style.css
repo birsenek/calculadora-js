@@ -1,22 +1,30 @@
 body {
     background-color: #f0f0f0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:flex;
+    justify-content: center;
 }
 
 .content {
+    width: 350px;
     display: flex;
-    width: 90vw;
+    flex-direction: column;
     justify-content: center;
+}
+
+.content h1 {
+    margin: 0;
+    margin-left: auto;
 }
 
 .calculator-area {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 160px;
-    height: 200px;
+    width: 350px;
+    height: 560px;
     background-color: #C2D73E;
-    box-shadow: 1px 1px 1px #00000055;
+    box-shadow: 2px 2px 2px 2px #00000055;
     border: solid 1px #000000;
     border-radius: 5px;
     padding: 5px;
@@ -24,6 +32,8 @@ body {
 
 #operator {
     background-color: greenyellow;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 #operator:hover {
@@ -32,9 +42,9 @@ body {
 
 .display-area {
     background-color: #F5F5fA;
-    width: 156px;
-    height: 25px;
-    margin-right: 1px;
+    width: 340px;
+    height: 70px;
+    font-size: 3em;
     border: solid 1px #000000;
     box-shadow: 1px 1px 1px #00000055;
     text-align: right;
@@ -42,8 +52,17 @@ body {
     overflow: hidden;
 }
 
+#display-text {
+    margin-right: 15px;
+}
+
 #number {
     background-color: #7A9AA4;
+    font-size: 2em
+}
+
+.mult {
+    border-top-right-radius: 5%;
 }
 
 #number:hover {
@@ -53,6 +72,8 @@ body {
 #clear {
     grid-column-start: 1;
     grid-column-end: 3;
+    font-size: 2em;
+    border-top-left-radius: 5%;
 }
 
 #clear:hover, #dot:hover, #undo:hover {
@@ -68,7 +89,7 @@ body {
     grid-column-end: 5;
     grid-row-start: 4;
     grid-row-end: 6;
-    background-color: #F49867;
+    background-color: #F49867;    
 }
 
 #result:hover {
@@ -78,25 +99,30 @@ body {
 #vert {
     writing-mode: vertical-rl;
     text-orientation: upright;
-    font-size: 0.45em;
+    font-size: 1.2em;
     padding: 2px;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 #undo {
-    font-size: 0.5em;
+    font-size: 1.2em;
     padding: 0;
 }
 
 .buttons-area {
-    margin-top: 2px;
-    box-shadow: 1px 1px 1px #00000055;
+    margin-top: 10px;
+    box-shadow: 1px 5px 5px #00000055;
+    background-color: #C2D73E;
     display: grid;
-    grid-template-columns: repeat(4, 40px);
-    grid-template-rows: repeat(5, 35px);
+    grid-template-columns: repeat(4, 85px);
+    grid-template-rows: repeat(5, 92px);
+
 }
 
 button {
     outline: none;
 }
 
+#dot {
+    font-size: 4em;
+}
